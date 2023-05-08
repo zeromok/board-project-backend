@@ -31,7 +31,7 @@ public class BoardController {
     }
 
 
-    @Operation(summary = "모든 게시물 조회", description = "")
+    @Operation(summary = "모든 게시물 조회", description = "모든 게시물을 가져옵니다.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "조회성공",
@@ -42,12 +42,12 @@ public class BoardController {
             description = "서버오류")
     })
     @GetMapping("/list")
-    public ResponseEntity list() {
-        return new ResponseEntity(boardService.getList(), HttpStatus.OK);
+    public ResponseEntity<List<BoardVO>> list() {
+        return new ResponseEntity<>(boardService.getList(), HttpStatus.OK);
     }
 
 
-    @Operation(summary = "bno를 이용한 게시물 조회", description = "")
+    @Operation(summary = "bno를 이용한 게시물 조회", description = "bno를 이용한 게시물 조회")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200",
                     description = "조회성공",
@@ -58,8 +58,8 @@ public class BoardController {
                     description = "서버오류")
     })
     @GetMapping("/inquery/{bno}")
-    public ResponseEntity findByID(@PathVariable("bno") int bno) {
-        return new ResponseEntity(boardService.findByID(bno), HttpStatus.OK);
+    public ResponseEntity<BoardVO> findByID(@PathVariable("bno") int bno) {
+        return new ResponseEntity<>(boardService.findByID(bno), HttpStatus.OK);
     }
 
 
@@ -74,8 +74,8 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/remove")
-    public ResponseEntity removeByBNO(@RequestBody BoardDTO dto) {
-        return new ResponseEntity(boardService.remove(dto.getBno()), HttpStatus.OK);
+    public ResponseEntity<Boolean> removeByBNO(@RequestBody BoardDTO dto) {
+        return new ResponseEntity<>(boardService.remove(dto.getBno()), HttpStatus.OK);
     }
 
 
@@ -90,8 +90,8 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/regster")
-    public ResponseEntity regster(@RequestBody BoardDTO dto) {
-        return new ResponseEntity(boardService.update(dto), HttpStatus.OK);
+    public ResponseEntity<Boolean> register(@RequestBody BoardDTO dto) {
+        return new ResponseEntity<>(boardService.update(dto), HttpStatus.OK);
     }
 
 
@@ -106,8 +106,8 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/modify")
-    public ResponseEntity modify(@RequestBody BoardDTO dto) {
-        return new ResponseEntity(boardService.modify(dto), HttpStatus.OK);
+    public ResponseEntity<Boolean> modify(@RequestBody BoardDTO dto) {
+        return new ResponseEntity<>(boardService.modify(dto), HttpStatus.OK);
     }
 
 }

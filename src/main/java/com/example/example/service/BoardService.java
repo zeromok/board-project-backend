@@ -20,13 +20,11 @@ public class BoardService {
     }
 
     public List<BoardVO> getList() {
-        List<BoardVO> data = boardMapper.selectAllList();
-        return data;
+        return boardMapper.selectAllList();
     }
 
     public BoardVO findByID(int bno) {
-        BoardVO data = boardMapper.findByBNO(bno);
-        return data;
+        return boardMapper.findByBNO(bno);
     }
 
     public boolean remove(int bno) {

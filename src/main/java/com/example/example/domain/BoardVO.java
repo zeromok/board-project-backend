@@ -13,15 +13,15 @@ public class BoardVO {
         => 방향 : 영속성계층에서 수집 -> 비즈니스계층, 표현계층으로 전달
     */
 
-    private Integer bno;
-    private String title;
-    private String content;
-    private String writer;
+    Integer bno;
+    String title;
+    String content;
+    String writer;
 
     /*
         정보통신법의 요구사항에 따라, 중요 데이터 테이블에는
         아래와 같이, 레코드가 최초 생성된 시각과 최종 수정된 시각을 유지할 수 있게 컬럼 정의
     */
-    private Date insertTs;
-    private Date updateTs;
+    Date insertTs;
+    Date updateTs;
 }
