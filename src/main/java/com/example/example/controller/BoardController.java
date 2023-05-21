@@ -1,5 +1,6 @@
 package com.example.example.controller;
 
+import com.example.example.advice.GlobalAdvice;
 import com.example.example.domain.BoardDTO;
 import com.example.example.domain.BoardVO;
 import com.example.example.service.BoardService;
@@ -42,7 +43,7 @@ public class BoardController {
             description = "서버오류")
     })
     @GetMapping("/list")
-    public ResponseEntity<List<BoardVO>> list() {
+    public ResponseEntity<List<BoardVO>> list() throws GlobalAdvice {
         return new ResponseEntity<>(boardService.getList(), HttpStatus.OK);
     }
 
@@ -58,7 +59,7 @@ public class BoardController {
                     description = "서버오류")
     })
     @GetMapping("/inquery/{bno}")
-    public ResponseEntity<BoardVO> findByID(@PathVariable("bno") int bno) {
+    public ResponseEntity<BoardVO> findByID(@PathVariable("bno") int bno) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.findByID(bno), HttpStatus.OK);
     }
 
@@ -74,7 +75,7 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/remove")
-    public ResponseEntity<Boolean> removeByBNO(@RequestBody BoardDTO dto) {
+    public ResponseEntity<Boolean> removeByBNO(@RequestBody BoardDTO dto) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.remove(dto.getBno()), HttpStatus.OK);
     }
 
@@ -90,7 +91,7 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/regster")
-    public ResponseEntity<Boolean> register(@RequestBody BoardDTO dto) {
+    public ResponseEntity<Boolean> register(@RequestBody BoardDTO dto) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.update(dto), HttpStatus.OK);
     }
 
@@ -106,7 +107,7 @@ public class BoardController {
                     description = "서버오류")
     })
     @PostMapping("/modify")
-    public ResponseEntity<Boolean> modify(@RequestBody BoardDTO dto) {
+    public ResponseEntity<Boolean> modify(@RequestBody BoardDTO dto) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.modify(dto), HttpStatus.OK);
     }
 

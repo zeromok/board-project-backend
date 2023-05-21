@@ -1,5 +1,6 @@
 package com.example.example.service;
 
+import com.example.example.advice.GlobalAdvice;
 import com.example.example.domain.BoardDTO;
 import com.example.example.domain.BoardVO;
 import com.example.example.mapper.BoardMapper;
@@ -19,23 +20,23 @@ public class BoardService {
         this.boardMapper = boardMapper;
     }
 
-    public List<BoardVO> getList() {
+    public List<BoardVO> getList() throws GlobalAdvice {
         return boardMapper.selectAllList();
     }
 
-    public BoardVO findByID(int bno) {
+    public BoardVO findByID(int bno) throws GlobalAdvice {
         return boardMapper.findByBNO(bno);
     }
 
-    public boolean remove(int bno) {
+    public boolean remove(int bno) throws GlobalAdvice {
         return boardMapper.delete(bno) == 1;
     }
 
-    public boolean modify(BoardDTO dto) {
+    public boolean modify(BoardDTO dto) throws GlobalAdvice {
         return boardMapper.update(dto) == 1;
     }
 
-    public boolean update(BoardDTO dto) {
+    public boolean update(BoardDTO dto) throws GlobalAdvice {
         return boardMapper.insert(dto) == 1;
     }
 
