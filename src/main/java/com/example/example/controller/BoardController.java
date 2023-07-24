@@ -58,7 +58,7 @@ public class BoardController {
             @ApiResponse(responseCode = "500",
                     description = "서버오류")
     })
-    @GetMapping("/inquery/{bno}")
+    @GetMapping("/inquiry/{bno}")
     public ResponseEntity<BoardVO> findByID(@PathVariable("bno") int bno) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.findByID(bno), HttpStatus.OK);
     }
@@ -90,7 +90,7 @@ public class BoardController {
             @ApiResponse(responseCode = "500",
                     description = "서버오류")
     })
-    @PostMapping("/regster")
+    @PostMapping("/register")
     public ResponseEntity<Boolean> register(@RequestBody BoardDTO dto) throws GlobalAdvice {
         return new ResponseEntity<>(boardService.update(dto), HttpStatus.OK);
     }
